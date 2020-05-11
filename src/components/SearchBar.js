@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-const SearchBar = ({term, onTermChange}) => {
+const SearchBar = ({term, onTermChange, onTermSubmit}) => {
 
   return (
     <View style={styles.backgroundStyle}>
@@ -11,10 +11,12 @@ const SearchBar = ({term, onTermChange}) => {
       <TextInput 
         autoCapitalize='none'
         autoCorrect={false}
-        value={term}
-        onChangeText={newTerm => onTermChange(newTerm)}
         placeholder='Search'
-        style={styles.inputStyle} />
+        style={styles.inputStyle} 
+        value={term}
+        onChangeText={onTermChange}
+        onEndEditing={onTermSubmit}
+      />
     </View>
   );
 };
