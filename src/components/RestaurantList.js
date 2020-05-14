@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import RestaurantsDetail from './RestaurantsDetail'
 
-const RestaurantList = ({ title, restaurants }) => {
+const RestaurantList = ({ title, restaurants, navigation }) => {
+  
+
   return (
     <View style={styles.container}>
       <Text style={styles.titleStyle}>{title}</Text>
@@ -12,7 +14,11 @@ const RestaurantList = ({ title, restaurants }) => {
         data={restaurants}
         keyExtractor={ (restaurant) => restaurant.id }
         renderItem={ ({ item }) => {
-          return <RestaurantsDetail restaurant={item}/>
+          return (
+            <TouchableOpacity onPress={() => navigation.navigate('RestaurantShow')}>
+              <RestaurantsDetail restaurant={item}/>
+            </TouchableOpacity>
+          )
         }}
       />
     </View>

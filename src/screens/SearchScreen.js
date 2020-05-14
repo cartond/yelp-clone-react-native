@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
 import useRestaurants from '../hooks/useRestaurants'
 
@@ -7,7 +7,7 @@ import SearchBar from '../components/SearchBar';
 import RestaurantList from '../components/RestaurantList';
 
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const [term, setTerm] = useState('');
   const [searchApi, restaurants, error] = useRestaurants(); 
 
@@ -19,7 +19,7 @@ const SearchScreen = () => {
   };
  
   return (
-    <View style={styles.background}>
+    <View style={styles.container}>
       <SearchBar
         term={term}
         onTermChange={setTerm} 
@@ -29,18 +29,32 @@ const SearchScreen = () => {
         !!error && 
         <Text style={styles.errors}>Error: {error}</Text>
       )}
-
-      <RestaurantList title='Cost Effective' restaurants={filterResultsByPrice('$')} />
-      <RestaurantList title='Bit More' restaurants={filterResultsByPrice('$$')} />
-      <RestaurantList title='Big Money' restaurants={filterResultsByPrice('$$$')} />
-      <RestaurantList title='Date Night' restaurants={filterResultsByPrice('$$$$')} />
+      <ScrollView>
+        <RestaurantList
+          navigation={navigation}
+          title='Cost Effective'
+          restaurants={filterResultsByPrice('$')} />
+        <RestaurantList
+          navigation={navigation}
+          title='Bit More'
+          restaurants={filterResultsByPrice('$$')} />
+        <RestaurantList
+          navigation={navigation}
+          title='Big Money'
+          restaurants={filterResultsByPrice('$$$')} />
+        <RestaurantList
+          navigation={navigation}
+          title='Date Night'
+          restaurants={filterResultsByPrice('$$$$')} />
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  background:{
-    backgroundColor: 'white'
+  container:{
+    backgroundColor: 'white',
+    flex: 1
   },
   errors:{
     color: 'red'
