@@ -23,6 +23,23 @@ export default () => {
     }
   }
 
+  const fetch = async(id) => {
+    try {
+      const response = await yelp.get(`/${id}`, {
+        params:{
+          limit: 50,
+          term: searchTerm,
+          location: 'greenville'
+        }
+      });
+      setError('')
+      setRestaurants(response.data.businesses);
+    } catch (e) {
+      console.log(e)
+      setError('Something went wrong!')
+    }
+  }
+
   useEffect(() => {
     searchApi('pasta');
   }, []);

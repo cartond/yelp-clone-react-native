@@ -7,7 +7,7 @@ import SearchBar from '../components/SearchBar';
 import RestaurantList from '../components/RestaurantList';
 
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
   const [term, setTerm] = useState('');
   const [searchApi, restaurants, error] = useRestaurants(); 
 
@@ -31,19 +31,15 @@ const SearchScreen = ({ navigation }) => {
       )}
       <ScrollView>
         <RestaurantList
-          navigation={navigation}
           title='Cost Effective'
           restaurants={filterResultsByPrice('$')} />
         <RestaurantList
-          navigation={navigation}
           title='Bit More'
           restaurants={filterResultsByPrice('$$')} />
         <RestaurantList
-          navigation={navigation}
           title='Big Money'
           restaurants={filterResultsByPrice('$$$')} />
         <RestaurantList
-          navigation={navigation}
           title='Date Night'
           restaurants={filterResultsByPrice('$$$$')} />
       </ScrollView>
