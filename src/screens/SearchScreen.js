@@ -31,16 +31,16 @@ const SearchScreen = () => {
       )}
       <ScrollView>
         <RestaurantList
-          title='Cost Effective'
+          title='Cost Effective ($)'
           restaurants={filterResultsByPrice('$')} />
         <RestaurantList
-          title='Bit More'
+          title='Bit More ($$)'
           restaurants={filterResultsByPrice('$$')} />
         <RestaurantList
-          title='Big Money'
+          title='Big Money ($$$)'
           restaurants={filterResultsByPrice('$$$')} />
         <RestaurantList
-          title='Date Night'
+          title='Date Night ($$$$)'
           restaurants={filterResultsByPrice('$$$$')} />
       </ScrollView>
     </View>
